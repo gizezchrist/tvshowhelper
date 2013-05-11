@@ -14,11 +14,11 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 
 
 public class Secondary extends Thread implements ActionListener{
-	private JTextField textfield1;
+	
 	private Update update;
 	private JFrame frame;
 	
