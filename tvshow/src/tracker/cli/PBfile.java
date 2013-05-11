@@ -2,7 +2,7 @@ package tracker.cli;
 
 public class PBfile {
 
-	
+	/*o*/
 	private String filename=null,magnetlink=null,filesize=null,seeders=null,leechers=null;
 private int id;
 
