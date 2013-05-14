@@ -2,12 +2,20 @@ package tracker.cli;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+
+import org.omg.CORBA.portable.OutputStream;
+import org.w3c.tidy.Tidy;
 
 public class asdasd extends Thread {
 
@@ -15,28 +23,33 @@ public class asdasd extends Thread {
 	
 	public static void main(String[] args) throws InterruptedException, IOException{
 		
+		Tidy tidy = new Tidy();
+		
+		
 		BufferedReader in = null;        	
-    	URL url = new URL("http://www.xdccfinder.com/results.php?kw=arrow_s01e18_720p");
-    	//        URL url = new URL("https://w3dt.net/tools/textbrowser/?host=http://www.xdccfinder.com/results.php?kw=arrow_s01e18_720p&submit=Browse&clean_opt=1");
-
+		//URL url = new URL("http://www.google.pt");
+		
+			//URL url = new URL("http://www.xdccfinder.com/results.php?kw=arrow_s01e18_720p");
+		URL url = new URL("https://w3dt.net/tools/textbrowser/?host=http://www.xdccfinder.com/results.php?kw=arrow_s01e18_720p&submit=Browse&clean_opt=1");
     	HttpURLConnection  urlc;
-        urlc = (HttpURLConnection) url.openConnection();
-      //	  urlc.setRequestMethod("POST");
-        urlc.setDoOutput(true);
-       // urlc.addRequestProperty("user-agent", "Firefox");
-    	urlc.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
-       // urlc.setRequestProperty("Accept", "text/html; charset=utf-8");
-        
-        //urlc.setRequestProperty("Accept-Language", "en-us,en;q=0.5");
-        urlc.setAllowUserInteraction(true);
-        in = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
-        String inputLine;
-        
-        
+        SSLSocketFactory ssf = (SSLSocketFactory) SSLSocketFactory.getDefault();
+        SSLSocket sslsocket = (SSLSocket) ssf.createSocket("somehost.dk", 3049);
+    		
+    		InputStream inputstream = sslsocket.getInputStream();
+          urlc = (HttpURLConnection) url.openConnection();
+          urlc.setDoOutput(true);
+          urlc.addRequestProperty("user-agent", "Firefox");
+          in = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
+          String inputLine;
 
-        while ((inputLine = in.readLine()) != null){
-        	System.out.println(inputLine);
-        }
+          while ((inputLine = in.readLine()) != null){
+              System.out.println(inputLine);
+          }
+          
+          Socket s = ssf.createSocket("https://w3dt.net/tools/textbrowser/?host=http://www.xdccfinder.com/results.php?kw=arrow_s01e18_720p&submit=Browse&clean_opt=1", 5432);
+
+          OutputStream outs = (OutputStream) s.getOutputStream();
+          
 	}
 	
 	public asdasd (asdasd hell) throws InterruptedException{

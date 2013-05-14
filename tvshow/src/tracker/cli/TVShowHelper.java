@@ -18,6 +18,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -158,6 +160,12 @@ public class TVShowHelper extends JFrame{
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						} catch (CouldNotOpenUriSchemeHandler e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (KeyManagementException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (NoSuchAlgorithmException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
